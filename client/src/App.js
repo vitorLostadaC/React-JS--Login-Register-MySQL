@@ -1,9 +1,20 @@
+import { useState } from "react";
 import "./App.css";
 import * as yup from "yup";
 import { ErrorMessage, Formik, Form, Field } from "formik";
+import Axios from "axios";
 
 function App() {
-  const handleSubmit = (values) => console.log(values);
+  const handleLogin = (values) => {};
+
+  const handleRegister = (values) => {
+    Axios.post("http://localhost:3001/register", {
+      email: values.email,
+      password: values.password,
+    }).then((response) => {
+      console.log(response);
+    });
+  };
 
   const validationsLogin = yup.object().shape({
     email: yup
@@ -27,103 +38,87 @@ function App() {
       .required("A senha é obrigatória"),
     confirmation: yup
       .string()
-      .oneOf([yup.ref("password"), null], "As senhas não se coincidem")
+      .oneOf([yup.ref("password"), null], "As senhas são diferentes")
       .required("A confirmação da senha é obrigatória"),
   });
 
   return (
-    <div className="login-container">
+    <div className="container">
       <h1>Login</h1>
       <Formik
         initialValues={{}}
-        onSubmit={handleSubmit}
+        onSubmit={handleLogin}
         validationSchema={validationsLogin}
       >
         <Form className="login-form">
           <div className="login-form-group">
-            <Field
-              name="email"
-              className="login-form-field"
-              placeholder="Email"
-            />
+            <Field name="email" className="form-field" placeholder="Email" />
 
             <ErrorMessage
               component="span"
               name="email"
-              className="login-form-error"
+              className="form-error"
             />
           </div>
           {/*Outro campo*/}
-          <div className="login-form-group">
-            <Field
-              name="password"
-              className="login-form-field"
-              placeholder="Senha"
-            />
+          <div className="form-group">
+            <Field name="password" className="form-field" placeholder="Senha" />
 
             <ErrorMessage
               component="span"
               name="password"
-              className="login-form-error"
+              className="form-error"
             />
           </div>
 
-          <button className="login-button" type="submit">
+          <button className="button" type="submit">
             Login
           </button>
         </Form>
       </Formik>
-
+      {/*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/}
       <h1>Cadastro</h1>
       <Formik
         initialValues={{}}
-        onSubmit={handleSubmit}
+        onSubmit={handleRegister}
         validationSchema={validationsRegister}
       >
         <Form className="register-form">
           <div className="register-form-group">
-            <Field
-              name="email"
-              className="register-form-field"
-              placeholder="Email"
-            />
+            <Field name="email" className="form-field" placeholder="Email" />
 
             <ErrorMessage
               component="span"
               name="email"
-              className="register-form-error"
+              className="form-error"
             />
           </div>
-          {/*Outro campo*/}
-          <div className="register-form-group">
-            <Field
-              name="password"
-              className="register-form-field"
-              placeholder="Senha"
-            />
+
+          <div className="form-group">
+            <Field name="password" className="form-field" placeholder="Senha" />
 
             <ErrorMessage
               component="span"
               name="password"
-              className="register-form-error"
+              className="form-error"
             />
           </div>
 
-          <div className="register-form-group">
+          <div className="form-group">
             <Field
               name="confirmation"
-              className="register-form-field"
+              className="form-field"
               placeholder="Senha"
             />
 
             <ErrorMessage
               component="span"
               name="confirmation"
-              className="register-form-error"
+              className="form-error"
             />
           </div>
 
-          <button className="register-button" type="submit">
+          <button className="button" type="submit">
             Cadastrar
           </button>
         </Form>
