@@ -20,6 +20,7 @@ function App() {
       password: values.password,
     }).then((response) => {
       alert(response.data.msg);
+      console.log(response);
     });
   };
 
