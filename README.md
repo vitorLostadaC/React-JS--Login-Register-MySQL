@@ -3,6 +3,17 @@
   <img src="client/src/assets/to_readme/LoginAndRegisterGif.gif" width="600px">
 </p>
 
+## Tutorial
+
+  <div align="center">
+  <a href="https://www.youtube.com/watch?v=F_mXVI8Dalg">
+    <img 
+          src="https://img.youtube.com/vi/F_mXVI8Dalg/0.jpg" 
+          alt="Everything Is AWESOME" 
+          style="width:100%;">
+  </a>
+</div>
+
 ## Installation
 
 ### Client
@@ -33,7 +44,15 @@
 
 ## Used Libraries
 
-1. `formik` to create the form.
-2. `yup` make the necessary validations.
-3. `axios` to connect the front to the back.
-4. `bcrypt ` used to encrypt password.
+
+### Front-end
++ `formik` 
++ `yup` 
++ `axios` 
+
+### Back-end
+
++ `bcrypt ` 
++ `express`
++ `mysql`
++ `nodemon`
